@@ -13,25 +13,41 @@ function genreList(genres){
     })
     return genreList
 }
- 
+
 function createCards(artists){
     let cardSection = document.getElementById('artist-cards')
     
     artists.forEach(artist => {
         let div2 = document.createElement('div')
-        let genres = artist.genre
+        let div3 = document.createElement('div')
+        let div4 = document.createElement('div')
+      
         div2.className = 'artist-card'
-        console.log(artist)
+        div3.className = 'artist-info'
+        div4.className = 'image-box'
+
         let h3 = document.createElement('h3')
-        let p = document.createElement('p')
+        let label1 = document.createElement('h4')
+        let p1 = document.createElement('p')
+        let label2 = document.createElement('h4')
+        let p2 = document.createElement('p')
+        let p3 = document.createElement('p')
+        let img = document.createElement('img')
+       
+        p1.innerText = artist.followers
+        label1.innerText = "Followers:"
         
-        p.append(genreList(artist.genre))
+        p2.append(genreList(artist.genre))
+        p2.className = 'artist-genre-list' 
+        label2.innerText = "Genres:"
 
-        p.className = 'artist-genre-list'
-
+        img.src = artist.image
+      
         h3.innerText = artist.name 
         
-        div2.append(h3, p)
+        div4.append(img)
+        div3.append(h3, label1, p1, label2, p2, p3)
+        div2.append(div4, div3)
         cardSection.append(div2)
     })
     

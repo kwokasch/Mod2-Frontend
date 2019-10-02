@@ -21,10 +21,12 @@ function createCards(artists){
         let div2 = document.createElement('div')
         let div3 = document.createElement('div')
         let div4 = document.createElement('div')
+        let div5 = document.createElement('div')
       
         div2.className = 'artist-card'
         div3.className = 'artist-info'
         div4.className = 'image-box'
+        div5.className = 'artist-info-background'
 
         let h3 = document.createElement('h3')
         let label1 = document.createElement('h4')
@@ -46,7 +48,7 @@ function createCards(artists){
         h3.innerText = artist.name 
         
         div4.append(img)
-        div3.append(h3, label1, p1, label2, p2, p3)
+        div3.append(div5, h3, label1, p1, label2, p2, p3)
         div2.append(div4, div3)
         cardSection.append(div2)
     })

@@ -12,7 +12,16 @@
         <h1>Spotify Lite</h1>
     </header>
     <main>
-        <section id="form"></section>
+        <form id="search" method="POST" action="http://localhost:3000/artists">
+            <label for="artist">Search:</label>
+            <input id="artist" type="text" placeholder="Artist Name" name="name"/>
+            <input type="submit" value="Find"/>  
+        </form>
+        <!-- <form id="search" method="POST" action="http://localhost:3000/albums">
+            <label for="artist">Search:</label>
+            <input id="artist" type="text" placeholder="Album Name" name="name"/>
+            <input type="submit" value="Find"/>  
+        </form> -->
         <section id="artist-cards"></section>
         <section id="album-cards"></section>
     </main>

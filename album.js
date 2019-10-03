@@ -1,3 +1,5 @@
+let albumsArray = []
+
 const albumSearchParams = new URLSearchParams(window.location.search)
 const albumQuery = albumSearchParams.get('id')
 const albumBody = document.body
@@ -14,6 +16,7 @@ function albumList(firstFiveSongs){
  
     return albumList
 }
+
 function createAlbumCards(albums){
     
     albums.forEach(album => {
@@ -51,6 +54,8 @@ function createAlbumCards(albums){
         img.src = album.image
       
         h3.innerText = album.name.toUpperCase() 
+        albumsArray.push(album) 
+        allArtistAlbums.push(album)
         
         div4.append(img)
         div3.append(div5, h3, label1, p1, label2, p2, p3)
@@ -60,13 +65,13 @@ function createAlbumCards(albums){
     
     albumBody.append(albumCards)
 }
+
 const albumButton = document.getElementById('albums-button')
 albumButton.addEventListener("click", () => {
     artistCards.innerHTML = ''
     albumCards.innerHTML = ''
     retrieveAlbums() 
 })
-
 
 function retrieveAlbums () {
     fetch(`http://localhost:3000/albums`)

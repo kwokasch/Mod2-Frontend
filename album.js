@@ -33,13 +33,15 @@ function createAlbumCards(albums){
         let h3 = document.createElement('h3')
         let label1 = document.createElement('h4')
         let p1 = document.createElement('p')
+        p1.className = 'artist-name'
         let label2 = document.createElement('h4')
         let p2 = document.createElement('p')
         let p3 = document.createElement('p')
         let img = document.createElement('img')
        
         let musicians = JSON.parse(album.musicians)
-        p1.innerText = musicians
+        p1.innerText = musicians[0].toUpperCase()
+        
         label1.innerText = "Artists:"
         
         let songs = JSON.parse(album.songs)
@@ -78,4 +80,5 @@ function retrieveAlbums () {
         .then(response => response.json())
         .then(createAlbumCards)
     }
+
 retrieveAlbums()

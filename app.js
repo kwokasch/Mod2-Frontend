@@ -18,7 +18,6 @@ function genreList(genres){
 
     selectedGenres.forEach(item => {
         let li = document.createElement('li')
-        console.log(item)
         if (item === undefined) {
             li.innerText = ' '
         } else {
@@ -94,6 +93,28 @@ function retrieveArtists (){
 }
 
 retrieveArtists()
+
+
+
+const artistAlbumFilter = document.getElementById('album-search')
+    artistAlbumFilter.addEventListener("submit", (event) => {
+        event.preventDefault()
+        let newAlbumsArray = []
+        let input = document.getElementById('albums').value
+        albumsArray.forEach(album => {
+            let musicians = album.musicians
+            let musicians2 = JSON.parse(musicians)
+            let eachMusician = musicians2[0]
+            console.log(input)
+            console.log(eachMusician.toLowerCase())
+            if (eachMusician.toLowerCase().includes(input.toLowerCase()))
+                newAlbumsArray.push(album)
+        })
+        albumCards.innerHTML = ''
+        artistCards.innerHTML = ''
+        createAlbumCards(newAlbumsArray)
+    })
+
 
 // const zoom = document.querySelector('.artist-card')
 // zoom.addEventListener("click", () =>{

@@ -5,10 +5,10 @@ const albumQuery = albumSearchParams.get('id')
 const albumBody = document.body
 const albumCards = document.getElementById('album-cards')
 
-function albumList(firstFiveSongs){
+function albumList(firstThreeSongs){
     let albumList = document.createElement('ul')
     
-    firstFiveSongs.forEach(item => {
+    firstThreeSongs.forEach(item => {
         let li = document.createElement('li')
         li.innerText = `${item}`
         albumList.append(li)
@@ -43,9 +43,9 @@ function createAlbumCards(albums){
         label1.innerText = "Artists:"
         
         let songs = JSON.parse(album.songs)
-        let firstFive = songs.slice(0,3)
+        let firstThreeSongs = songs.slice(0,3)
         
-        p2.append(albumList(firstFive))
+        p2.append(albumList(firstThreeSongs))
         p2.append("More...")
         
         p2.className = 'album-song-list' 

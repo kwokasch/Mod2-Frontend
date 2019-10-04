@@ -10,13 +10,24 @@ function genreList(genres){
     let artistList = document.createElement('ul')
     genres = JSON.parse(genres)
     
-    return genres[0]
-    // genres.forEach(item => {
-    //     let li = document.createElement('li')
-    //     li.innerText = `${item}`
-    //     artistList.append(li)
-    // })
-    // return artistList
+    selectedGenres = []
+    selectedGenres.push(genres[0])
+    selectedGenres.push(genres[1])
+    selectedGenres.push(genres[2])
+    // return selectedGenres
+
+    selectedGenres.forEach(item => {
+        let li = document.createElement('li')
+        console.log(item)
+        if (item === undefined) {
+            li.innerText = ' '
+        } else {
+        li.innerText = `${item}`
+        }
+        artistList.append(li)
+    })
+
+    return artistList
 }
 
 function createArtistCards(artists){
@@ -76,6 +87,14 @@ allButton.addEventListener("click", () => {
     retrieveAlbums() 
 })
 
+function retrieveArtists (){
+    fetch(`http://localhost:3000/artists`)
+    .then(response => response.json())
+    .then(createArtistCards)
+}
+
+retrieveArtists()
+
 // const zoom = document.querySelector('.artist-card')
 // zoom.addEventListener("click", () =>{
 //     let zoomBox = document.createElement('div')
@@ -104,12 +123,3 @@ allButton.addEventListener("click", () => {
 //     console.log(filteredArtistAlbums)
 //     return filteredArtistAlbums
 // }
-
-function retrieveArtists (){
-    fetch(`http://localhost:3000/artists`)
-        .then(response => response.json())
-        .then(createArtistCards)
-}
-
-retrieveArtists()
-

@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>SPOTIFY LITE</title>
     <link rel="stylesheet" href="app.css">
     <link href="https://fonts.googleapis.com/css?family=Squada+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -16,21 +17,20 @@
                 <form id="search" method="POST" action="http://localhost:3000/artists">
                     <label for="artist"></label>
                     <input id="artist" type="text" placeholder="Artist Name" name="name"/>
-                    <input type="submit" value="Add"/>  
+                    <input class="submit-button" type="submit" value="Add"/>  
                 </form>
             </div>
             <div>
                 <form id="search" method="POST" action="http://localhost:3000/albums">
                     <label for="album"></label>
                     <input id="album" type="text" placeholder="Album Name" name="name"/>
-                    <input type="submit" value="Add"/>  
+                    <input class="submit-button" type="submit" value="Add"/>  
                 </form>
             </div>
             <div>
-                <form id="search">
-                    <label for="search-box"></label>
-                    <input id="search-box" type="text" placeholder="Name" name="name"/>
-                    <input type="submit" value="Filter"/>  
+                <form id="album-search" method="GET" action="">
+                    <input id="albums" type="text" placeholder="Find Albums By Artist" name="name"/>
+                    <input class="submit-button" type="submit" value="Find"/>  
                 </form>
             </div>
             <div id="artist-button" >
@@ -49,6 +49,5 @@
 
     <script src="app.js"></script>
     <script src="album.js"></script>
-    <!-- <script src="https://sdk.scdn.co/spotify-player.js"></script> -->
 </body>
 </html>

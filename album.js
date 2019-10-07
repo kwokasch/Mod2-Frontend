@@ -1,12 +1,14 @@
+let albumsArray = []
+
 const albumSearchParams = new URLSearchParams(window.location.search)
 const albumQuery = albumSearchParams.get('id')
 const albumBody = document.body
 const albumCards = document.getElementById('album-cards')
 
-function albumList(firstFiveSongs){
+function albumList(firstThreeSongs){
     let albumList = document.createElement('ul')
     
-    firstFiveSongs.forEach(item => {
+    firstThreeSongs.forEach(item => {
         let li = document.createElement('li')
         li.innerText = `${item}`
         albumList.append(li)
@@ -14,6 +16,7 @@ function albumList(firstFiveSongs){
  
     return albumList
 }
+
 function createAlbumCards(albums){
     
     albums.forEach(album => {
@@ -30,19 +33,21 @@ function createAlbumCards(albums){
         let h3 = document.createElement('h3')
         let label1 = document.createElement('h4')
         let p1 = document.createElement('p')
+        p1.className = 'artist-name'
         let label2 = document.createElement('h4')
         let p2 = document.createElement('p')
         let p3 = document.createElement('p')
         let img = document.createElement('img')
        
         let musicians = JSON.parse(album.musicians)
-        p1.innerText = musicians
+        p1.innerText = musicians[0].toUpperCase()
+        
         label1.innerText = "Artists:"
         
         let songs = JSON.parse(album.songs)
-        let firstFive = songs.slice(0,3)
+        let firstThreeSongs = songs.slice(0,3)
         
-        p2.append(albumList(firstFive))
+        p2.append(albumList(firstThreeSongs))
         p2.append("More...")
         
         p2.className = 'album-song-list' 
@@ -51,6 +56,8 @@ function createAlbumCards(albums){
         img.src = album.image
       
         h3.innerText = album.name.toUpperCase() 
+        albumsArray.push(album) 
+        allArtistAlbums.push(album)
         
         div4.append(img)
         div3.append(div5, h3, label1, p1, label2, p2, p3)
@@ -60,6 +67,7 @@ function createAlbumCards(albums){
     
     albumBody.append(albumCards)
 }
+
 const albumButton = document.getElementById('albums-button')
 albumButton.addEventListener("click", () => {
     artistCards.innerHTML = ''
@@ -67,10 +75,10 @@ albumButton.addEventListener("click", () => {
     retrieveAlbums() 
 })
 
-
 function retrieveAlbums () {
     fetch(`http://localhost:3000/albums`)
         .then(response => response.json())
         .then(createAlbumCards)
     }
+
 retrieveAlbums()
